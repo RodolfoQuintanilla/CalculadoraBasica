@@ -1,9 +1,11 @@
 
 
-const Info = () => {
+const Info = ({display}) => {
+   console.log(display);
+   
     return (
         <div>
-            <input type="text" placeholder="ingresa numero"   />
+           {display}
         </div>
     );
 };

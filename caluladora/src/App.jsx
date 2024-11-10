@@ -5,20 +5,41 @@ import Teclado from "./components/Teclado"
 
 function App() {
 
-  const [numero, setNumero] = useState(0);
-  const [remante, setRemante] = useState(0);
+  const [display, setDisplay] = useState('');
 
-  function digitosMarcados(numero) {
-    console.log('digitosMarcados',numero);
-    
+
+  function handleButtonClick(id) {
+    setDisplay(display + id);
+
+  }
+
+  const calculate = () => {
+    try {
+      setDisplay(eval(display).toString());
+
+    } catch (error) {
+      setDisplay('Error');
+    }
+  };
+
+  const clear = () => {
+    setDisplay('');
+  }
+
+  const clearOne = () => {
+    setDisplay(display.slice(0, -1));
   }
 
   return (
     <>
       <h1>Calculadora</h1>
 
-      <Info />
-      <Teclado digitosMarcados={digitosMarcados} />
+      <Info display={display} />
+      <Teclado
+        handleButtonClick={handleButtonClick}
+        calculate={calculate} clear={clear}
+        clearOne={clearOne}
+      />
     </>
   )
 }
